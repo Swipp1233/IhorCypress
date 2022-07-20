@@ -7,7 +7,9 @@ export const sign_in_page = {
     username_error_message: '[id="username-helper-text"]',
     remember_me_checkbox: '[type="checkbox"]',
     sign_in_button: '[data-test="signin-submit"]',
-    dont_have_acc_hyperlink: '[data-test="signup"]'
+    dont_have_acc_hyperlink: '[data-test="signup"]',
+    copyright: '[rel="noopener noreferrer"]',
+    signin_error: '[data-test="signin-error"]'
 
 
 

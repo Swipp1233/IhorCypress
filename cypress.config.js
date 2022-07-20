@@ -7,7 +7,7 @@ module.exports = defineConfig({
     baseUrl: 'http://localhost:3000',
     watchForFileChanges: false,
     numTestsKeptInMemory: 50,
-    specPattern: 'cypress/e2e/*.cy.{js,jsx,ts,tsx}',
+    specPattern: 'cypress/e2e/*.{js,jsx,ts,tsx}',
     retries: {
       runMode: 2,
       openMode: 0,
