@@ -1,11 +1,6 @@
 import {sign_in_page} from "../selectors/sign_in_page_selectors";
 import {sign_up_page} from "../selectors/sign_up_page_selectors";
 
-//I use this one for generating unique usernames
-const uuid = () => Cypress._.random(0, 10000)
-const id = uuid()
-const testUserName = `IhorCypress${id}`
-
 
 describe('cypress_loginPage_cases', () => {
   before(() => {
@@ -34,19 +29,6 @@ describe('cypress_loginPage_cases', () => {
       cy.url().should('include', '/signin')
       cy.go('back')
     })
-
-    it('should check correct sign up flow', () => {
-
-      cy.intercept('POST', '/users').as('signup')
-      cy.get(sign_up_page.first_name).type('Ihor').should('have.value', 'Ihor')
-      cy.get(sign_up_page.last_name).type('Holubtsov').should('have.value', 'Holubtsov')
-      cy.get(sign_up_page.username).type(testUserName)
-      cy.get(sign_up_page.password).type('RestTest1!').should('have.value', 'RestTest1!')
-      cy.get(sign_up_page.confirm_password).type('RestTest1!').should('have.value', 'RestTest1!')
-      cy.get(sign_up_page.sign_up_button).click()
-      cy.wait('@signup').its('response.statusCode').should('eq', 201)
-      cy.url().should('include', '/signin') //A user gets redirect after successful registration
-  })
 
 })
 2
