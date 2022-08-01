@@ -1,15 +1,11 @@
 export const main_page = {
 
-    // SELECTORS FOR THE WELCOME POP-UPS (onboarding, bank data)
+    // ONBOARDING
     onboarding_popup: '[data-test="user-onboarding-dialog-content"]',
-    bank_name: '#bankaccount-bankName-input',
-    routing_number: '#bankaccount-routingNumber-input',
-    account_number: '#bankaccount-accountNumber-input',
-    bankaccount_submit_button: '[data-test="bankaccount-submit"]',
-
-
     // SIDEBAR
+    home_tab:'[data-test="sidenav-home"]',
+    my_account_tab: '[data-test="sidenav-user-settings"]',
+    bank_accounts_tab: '[data-test="sidenav-bankaccounts"]',
+    notifications_tab: '[data-test="sidenav-notifications"]',
     logout_button: '[data-test="sidenav-signout"]'
-
-
 }

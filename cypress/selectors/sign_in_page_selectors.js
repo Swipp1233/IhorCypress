@@ -10,7 +10,4 @@ export const sign_in_page = {
     dont_have_acc_hyperlink: '[data-test="signup"]',
     copyright: '[rel="noopener noreferrer"]',
     signin_error: '[data-test="signin-error"]'
-
-
-
 }
