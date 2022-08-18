@@ -32,7 +32,7 @@ describe('Checks of the artifacts on a page', () => {
     cy.get(sign_in_page.password_field).clear()
   })
 
-  it('should show \'Username is required\' error if user clicks on it and then click outside this field and didn\'t enter any value', () => {
+  it("should show \'Username is required\' error if user clicks on it and then click outside this field and didn\'t enter any value", () => {
     cy.get(sign_in_page.password_field).click()
     cy.get(sign_in_page.username_error_message).should('be.visible')
   })
@@ -46,13 +46,13 @@ describe('Checks of the artifacts on a page', () => {
     cy.get(sign_in_page.sign_in_button).should('be.disabled')
   })
 
-  it('should have \'Don\'t have an account? Sign Up\' clickable link under \'Sign in\' btn', () => {
+  it("should have \'Don\'t have an account? Sign Up\' clickable link under \'Sign in\' btn", () => {
     cy.get(sign_in_page.dont_have_acc_hyperlink).click()
     cy.url().should('be.equal', 'http://localhost:3000/signup')
     cy.go('back')
   })
 
-  it('should show Cypress copyright link that leads to \'https://www.cypress.io/\'', () => {
+  it("should show Cypress copyright link that leads to \'https://www.cypress.io/\'", () => {
     cy.get(sign_in_page.copyright).invoke('removeAttr', 'target').click()
     cy.get('[alt="Cypress.io"]').should('be.visible') //cypress logo on the cypress website
     cy.url().should('be.equal', 'https://www.cypress.io/')
