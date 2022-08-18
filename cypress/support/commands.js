@@ -20,19 +20,29 @@ Cypress.Commands.add('ui_signup_test_user', (first_name, last_name, username, pa
 
 // LOGIN COMMAND
 Cypress.Commands.add('ui_login', (username, password) => {
+    cy.clearCookies()
     cy.intercept('POST', '/login').as('login')
     cy.get(sign_in_page.login_field).type(username)
     cy.get(sign_in_page.password_field).type(password)
     cy.get(sign_in_page.sign_in_button).click()
     cy.wait('@login').its('response.statusCode').should('eq', 200)
-    cy.url().should("not.contain", "/signin")
 })
 
 //ONBOARDING
-Cypress.Commands.add('ui_onboarding', () => {
+Cypress.Commands.add('ui_onboarding', (bank_name, routing_number, account_number) => {
     cy.get(main_page.onboarding_popup).should('be.visible')
     cy.get('[data-test="user-onboarding-next"]').click()
     cy.get('[data-test="user-onboarding-dialog-title"]').should('be.visible')
+    cy.intercept('POST', '/graphql').as('graphql_request')
+    cy.get(bank_accont_selectors.bank_name).type(bank_name)
+    cy.get(bank_accont_selectors.routing_number).type(routing_number)
+    cy.get(bank_accont_selectors.account_number).type(account_number)
+    cy.get(bank_accont_selectors.bankaccount_submit_button).click()
+    cy.wait('@graphql_request').its('response.statusCode').should('eq', 200)
+    cy.get('[data-test="user-onboarding-dialog-title"]').should('be.visible')
+    cy.get('[data-test="user-onboarding-next"]').click()
+    cy.get('[data-test="user-onboarding-dialog-title"]').should('be.visible')
+
 })
 
 Cypress.Commands.add('ultimate_onboarding', (first_name, last_name, username, password, bank_name, routing_number, account_number) => {
@@ -96,3 +106,9 @@ Cypress.Commands.add('bank_acc_form_clearing', () => {
     cy.get(bank_accont_selectors.routing_number).clear().should('be.empty')
     cy.get(bank_accont_selectors.account_number).clear().should('be.empty')
 })
+
+Cypress.Commands.add('new_bank_acc_form_opening', () => {
+    cy.get('[data-test="bankaccount-new"]').click()
+    cy.url().should('include', '/bankaccounts/new')
+})
+
